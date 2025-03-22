@@ -4,6 +4,7 @@
 # skus = unicode string
 def checkout(skus):
     basket = {}
+    total = 0
     for c in skus:
         basket[c] = 1 + basket.get(c, 0)
     
@@ -27,11 +28,15 @@ def checkout(skus):
     
     
     group_items = ['S', 'T', 'X', 'Y', 'Z']
-    group_basket = {item: basket.get(item, 0) for item in group_items}
+    group_basket = {}
+    for item in group_items:
+        if item in basket:
+            group_basket[item] = basket[item]
+    
     total_group_items = sum(group_basket.values())
-
     group_offer_count = total_group_items // 3
     total += group_offer_count * 45
+
 
     items_to_remove = group_offer_count * 3
     for item in sorted(group_items, key=lambda x: {'S': 20, 'T': 20, 'X': 17, 'Y': 20, 'Z': 21}[x], reverse=True):
@@ -41,8 +46,6 @@ def checkout(skus):
         if items_to_remove == 0:
             break
 
-    
-    total = 0
     print(basket)
     for item, qty in basket.items():
         if item in group_items and qty == 0:
@@ -97,7 +100,7 @@ def checkout(skus):
 
 # print(checkout('ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ'))
 # print(checkout('LGCKAQXFOSKZGIWHNRNDITVBUUEOZXPYAVFDEPTBMQLYJRSMJCWH'))
-print(checkout('STX'))
+print(checkout('STXZ'))
 
 
 
