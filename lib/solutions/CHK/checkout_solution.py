@@ -24,8 +24,13 @@ def checkout(skus):
     if 'N' in basket and 'M' in basket and basket['N'] >= 3:
         basket['M'] -= basket['N'] // 3
         basket['M'] = max(0, basket['M'])
-    
-    
+    grouped
+    special_items = {'S': 20, 'T': 20, 'X': 17, 'Y': 20, 'Z': 21}
+    for item, price in special_items.items():
+        if item in basket:
+
+
+
 
     total = 0
     print(basket)
@@ -80,3 +85,4 @@ def checkout(skus):
 
 print(checkout('ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ'))
 print(checkout('LGCKAQXFOSKZGIWHNRNDITVBUUEOZXPYAVFDEPTBMQLYJRSMJCWH'))
+
