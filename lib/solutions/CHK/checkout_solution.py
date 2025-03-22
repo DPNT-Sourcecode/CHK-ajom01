@@ -85,16 +85,16 @@ def checkout(skus):
                 total += 80 * (qty // 3) + 30 * (qty % 3)
             case 'R':
                 total += 50 * qty
-            case 'S':
-                total += 30 * qty
+            # case 'S':
+            #     total += 30 * qty
             case 'V':
                 total += 130 * (qty // 3) + 90 * (qty % 3 // 2) + 50 * (qty % 3 % 2)
-            case 'X':
-                total += 90 * qty
-            case 'Y':
-                total += 10 * qty
-            case 'Z':
-                total += 50 * qty
+            case 'S' | 'T' | 'X' | 'Y' | 'Z':
+                pass
+            # case 'Y':
+            #     total += 10 * qty
+            # case 'Z':
+            #     total += 50 * qty
             case _:
                 return -1
     
@@ -103,5 +103,6 @@ def checkout(skus):
 # print(checkout('ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ'))
 # print(checkout('LGCKAQXFOSKZGIWHNRNDITVBUUEOZXPYAVFDEPTBMQLYJRSMJCWH'))
 print(checkout('STX'))
+
 
 
