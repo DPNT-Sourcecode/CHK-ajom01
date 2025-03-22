@@ -52,4 +52,3 @@ def checkout(skus):
     return total
 
 print(checkout("AABCDEFF"))  # 165
-
