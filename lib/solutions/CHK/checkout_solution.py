@@ -39,16 +39,16 @@ def checkout(skus):
 
 
     items_to_remove = group_offer_count * 3
-    for item in sorted(group_items, key=lambda x: {'S': 20, 'T': 20, 'X': 17, 'Y': 20, 'Z': 21}[x], reverse=True):
-        remove = min(items_to_remove, group_basket[item])
-        items_to_remove -= remove
-        basket[item] -= remove
-        if items_to_remove == 0:
-            break
+    price_lookup = {'S': 20, 'T': 20, 'X': 17, 'Y': 20, 'Z': 21}
+    for item in sorted(group_basket.keys(), key=lambda x: price_lookup[x], reverse=True):
+        if items_to_remove > 0 and group_basket[item] > 0:
+            remove = min(items_to_remove, group_basket[item])
+            items_to_remove -= remove
+            basket[item] -= remove
 
     print(basket)
     for item, qty in basket.items():
-        if item in group_items and qty == 0:
+        if qty <= 0:
             continue
         match item:
             case 'A':
@@ -83,24 +83,22 @@ def checkout(skus):
                 total += 80 * (qty // 3) + 30 * (qty % 3)
             case 'R':
                 total += 50 * qty
-            # case 'S':
-            #     total += 30 * qty
             case 'V':
                 total += 130 * (qty // 3) + 90 * (qty % 3 // 2) + 50 * (qty % 3 % 2)
-            case 'S' | 'T' | 'X' | 'Y' | 'Z':
-                continue
-            # case 'Y':
-            #     total += 10 * qty
-            # case 'Z':
-            #     total += 50 * qty
+            case 'S':
+                total += 20 * qty
+            case 'T':
+                total += 20 * qty
+            case 'X':
+                total += 17 * qty
+            case 'Y':
+                total += 20 * qty
+            case 'Z':
+                total += 21 * qty
             case _:
                 return -1
     
     return total
-
-# print(checkout('ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ'))
-# print(checkout('LGCKAQXFOSKZGIWHNRNDITVBUUEOZXPYAVFDEPTBMQLYJRSMJCWH'))
-print(checkout('STXZ'))
 
 
 
