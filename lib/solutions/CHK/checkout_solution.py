@@ -18,6 +18,8 @@ def checkout(skus):
             total += 20 * basket[item]
         elif item == 'D':
             total += 15 * basket[item]
+        elif item == 'E':
+            total += 40 * (basket[item] // 2) 
         else:
             return -1
     
