@@ -14,19 +14,21 @@ def checkout(skus):
 
     total = 0
     print(basket)
-    Our price table and offers:
-+------+-------+------------------------+
-| Item | Price | Special offers         |
-+------+-------+------------------------+
-| A    | 50    | 3A for 130, 5A for 200 |
-| B    | 30    | 2B for 45              |
-| C    | 20    |                        |
-| D    | 15    |                        |
-| E    | 40    | 2E get one B free      |
-+------+-------+------------------------+
+        #     Our price table and offers:
+        # +------+-------+------------------------+
+        # | Item | Price | Special offers         |
+        # +------+-------+------------------------+
+        # | A    | 50    | 3A for 130, 5A for 200 |
+        # | B    | 30    | 2B for 45              |
+        # | C    | 20    |                        |
+        # | D    | 15    |                        |
+        # | E    | 40    | 2E get one B free      |
+        # +------+-------+------------------------+
     for item in basket:
         if item == 'A':
-            
+            if basket[item] >= 5:
+                
+            # total += 200 * (basket[item] // 5) + 130 * ((basket[item] % 5) // 3) + 50 * (basket[item] % 3)
         elif item == 'B':
             total += 45 * (basket[item] // 2) + 30 * (basket[item] % 2)
         elif item == 'C':
@@ -40,8 +42,5 @@ def checkout(skus):
     
     return total
 
-print(checkout('AABCD')) # 165
-print(checkout("AAABB"))
-print(checkout("CDBA"))
-print(checkout("AXA"))
+print(checkout("AAAAABB"))
 
