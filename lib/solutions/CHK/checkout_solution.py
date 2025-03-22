@@ -24,10 +24,27 @@ def checkout(skus):
     if 'N' in basket and 'M' in basket and basket['N'] >= 3:
         basket['M'] -= basket['N'] // 3
         basket['M'] = max(0, basket['M'])
-    grouped
+    
+    
     special_items = {'S': 20, 'T': 20, 'X': 17, 'Y': 20, 'Z': 21}
-    for item, price in special_items.items():
-        if item in basket:
+    grouped_items = sorted(
+        ((item, price, basket[item]) for item, price in special_items.items() if item in basket),
+        key= lambda x: x[1],
+        reverse=True
+    )
+
+    group_count = sum(qantity for _, _, qantity in grouped_items)
+    discounted_group_count = group_count // 3
+
+    total = discounted_group_count * 45
+    remaining_group_count = group_count % 3
+
+    for item, price, quantity in grouped_items:
+        if discounted_group_count > 0:
+            discounted_group_count -= 1
+            continue
+        
+        total += price * quantity
 
 
 
@@ -85,4 +102,5 @@ def checkout(skus):
 
 print(checkout('ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ'))
 print(checkout('LGCKAQXFOSKZGIWHNRNDITVBUUEOZXPYAVFDEPTBMQLYJRSMJCWH'))
+
 
