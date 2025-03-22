@@ -39,7 +39,7 @@ def checkout(skus):
                 total += 20 * qty
             case 'D':
                 total += 15 * qty
-            case 'E':
+            case 'E' | 'U' | 'N':
                 total += 40 * qty
             case 'F':
                 total += 10 * qty
@@ -57,8 +57,6 @@ def checkout(skus):
                 total += 90 * qty
             case 'M':
                 total += 15 * qty
-            case 'N':
-                total += 40 * qty
             case 'O':
                 total += 10 * qty
             case 'P':
@@ -71,8 +69,6 @@ def checkout(skus):
                 total += 30 * qty
             case 'T':
                 total += 20 * qty
-            case 'U':
-                total += 40 * qty
             case 'V':
                 total += 130 * (qty // 3) + 90 * (qty % 3 // 2) + 50 * (qty % 3 % 2)
             case 'W':
@@ -80,12 +76,16 @@ def checkout(skus):
             case 'X':
                 total += 90 * qty
             case 'Y':
-                total += 10
+                total += 10 * qty
             case 'Z':
                 total += 50 * qty
             case _:
                 return -1
     
     return total
+
+print(checkout('ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ'))
+print(checkout('LGCKAQXFOSKZGIWHNRNDITVBUUEOZXPYAVFDEPTBMQLYJRSMJCWH'))
+
 
 
