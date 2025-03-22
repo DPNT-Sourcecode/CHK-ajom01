@@ -41,19 +41,12 @@ def checkout(skus):
         if items_to_remove == 0:
             break
 
-    for item, price, quantity in grouped_items:
-        if discounted_group_count == 0:
-            break
-        take = min(quantity, remaining_group_count)
-        total += take * price
-        remaining_group_count -= take
-        
-
-
-
+    
     total = 0
     print(basket)
     for item, qty in basket.items():
+        if item in group_items and qty == 0:
+            continue
         match item:
             case 'A':
                 total += 200 * (qty // 5) + 130 * (qty % 5 // 3) + 50 * (qty % 5 % 3)
@@ -105,6 +98,7 @@ def checkout(skus):
 # print(checkout('ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ'))
 # print(checkout('LGCKAQXFOSKZGIWHNRNDITVBUUEOZXPYAVFDEPTBMQLYJRSMJCWH'))
 print(checkout('STX'))
+
 
 
 
