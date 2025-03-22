@@ -46,6 +46,22 @@ def checkout(skus):
             total += 40 * basket[item]
         elif item == 'F':
             total += 10 * basket[item]
+        elif item == 'G':
+            total += 20 * basket[item]
+        elif item == 'H':
+            if basket[item] >= 10:
+                total += 80 * (basket[item] // 10)
+                basket[item] = basket[item] % 10
+            if basket[item] >= 5:
+                total += 45 * (basket[item] // 5)
+                basket[item] = basket[item] % 5
+            total += 10 * basket[item]
+        elif item == 'I':
+            total += 35 * basket[item]
+        elif item == 'J':
+            total += 60 * basket[item]
+        elif item == 'K':
+            total += 150 * (basket[item] // 2) +
         else:
             return -1
     
