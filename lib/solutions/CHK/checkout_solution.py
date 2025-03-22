@@ -26,18 +26,20 @@ def checkout(skus):
         basket['M'] = max(0, basket['M'])
     
     
-    special_items = {'S': 20, 'T': 20, 'X': 17, 'Y': 20, 'Z': 21}
-    grouped_items = sorted(
-        ((item, price, basket[item]) for item, price in special_items.items() if item in basket),
-        key= lambda x: x[1],
-        reverse=True
-    )
+    group_items = ['S', 'T', 'X', 'Y', 'Z']
+    group_basket = {item: basket.get(item, 0) for item in group_items}
+    total_group_items = sum(group_basket.values())
 
-    group_count = sum(qantity for _, _, qantity in grouped_items)
-    discounted_group_count = group_count // 3
+    group_offer_count = total_group_items // 3
+    total += group_offer_count * 45
 
-    total = discounted_group_count * 45
-    remaining_group_count = group_count % 3
+    items_to_remove = group_offer_count * 3
+    for item in sorted(group_items, key=lambda x: {'S': 20, 'T': 20, 'X': 17, 'Y': 20, 'Z': 21}[x], reverse=True):
+        remove = min(items_to_remove, group_basket[item])
+        items_to_remove -= remove
+        basket[item] -= remove
+        if items_to_remove == 0:
+            break
 
     for item, price, quantity in grouped_items:
         if discounted_group_count == 0:
@@ -72,7 +74,7 @@ def checkout(skus):
             case 'J':
                 total += 60 * qty
             case 'K':
-                total += 150 * (qty // 2) + 80 * (qty % 2)
+                total += 120 * (qty // 2) + 70 * (qty % 2)
             case 'L':
                 total += 90 * qty
             case 'M':
@@ -90,7 +92,7 @@ def checkout(skus):
             case 'V':
                 total += 130 * (qty // 3) + 90 * (qty % 3 // 2) + 50 * (qty % 3 % 2)
             case 'S' | 'T' | 'X' | 'Y' | 'Z':
-                pass
+                continue
             # case 'Y':
             #     total += 10 * qty
             # case 'Z':
@@ -103,6 +105,7 @@ def checkout(skus):
 # print(checkout('ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ'))
 # print(checkout('LGCKAQXFOSKZGIWHNRNDITVBUUEOZXPYAVFDEPTBMQLYJRSMJCWH'))
 print(checkout('STX'))
+
 
 
 
