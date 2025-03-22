@@ -7,10 +7,9 @@ def checkout(skus):
     for c in skus:
         basket[c] = 1 + basket.get(c, 0)
     
-    if 'E' in basket and 'B' in basket:
-        if basket['E'] >= 2:
-            basket['B'] -= basket['E'] // 2
-            basket['B'] = max(0, basket['B'])
+    if 'E' in basket and basket['E'] >= 2 and 'B' in basket:
+        basket['B'] -= basket['E'] // 2
+        basket['B'] = max(0, basket['B'])
     
     if 'F' in basket and basket['F'] >= 3:
         basket['F'] -= basket['F'] // 3
@@ -18,7 +17,13 @@ def checkout(skus):
     if 'U' in basket and basket['U'] >= 4:
         basket['U'] -= basket['U'] // 4
     
-    if 'R' in basket and basket['R'] >= 3:
+    if 'R' in basket and basket['R'] >= 3 and 'Q' in basket:
+        basket['Q'] -= basket['R'] // 3
+        basket['Q'] = max(0, basket['Q'])
+    
+    if 'N' in basket and 'M' in basket and basket['N'] >= 3:
+        basket['M'] -= basket['N'] // 3
+        basket['M'] = max(0, basket['M'])
     
     
 
@@ -64,7 +69,7 @@ def checkout(skus):
         elif item == 'M':
             total += 15 * basket[item]
         elif item == 'N':
-            pass
+            total += 40 * basket[item]
         elif item == 'O':
             total += 10 * basket[item]
         elif item == 'P':
@@ -72,7 +77,7 @@ def checkout(skus):
         elif item == 'Q':
             total += 80 * (basket[item] // 3) + 30 * (basket[item] % 3)
         elif item == 'R':
-            pass
+            total += 50 * basket[item]
         elif item == 'S':
             total += 30 * basket[item]
         elif item == 'T':
@@ -100,6 +105,6 @@ def checkout(skus):
     
     return total
 
-print(checkout("AABCDEFF"))  # 165
+print(checkout("EEEEEEEB"))  # 120
 
 
