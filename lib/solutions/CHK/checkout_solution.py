@@ -5,11 +5,12 @@
 def checkout(skus):
     basket = {}
     for c in skus:
-        basket[c] = 1 + basket.get(basket[c] + 0)
+        basket[c] = 1 + basket.get(c, 0)
     
     # {'A': 2, 'B': 2, 'C': 1}
 
     total = 0
+    print(basket)
     for item in basket:
         if item == 'A':
             total += 50 * (basket[item] // 3) + 130 * (basket[item] % 3)
@@ -22,4 +23,9 @@ def checkout(skus):
         else:
             return -1
     
+    return total
+
+print(checkout('AABCD')) # 165
+    
+
 
