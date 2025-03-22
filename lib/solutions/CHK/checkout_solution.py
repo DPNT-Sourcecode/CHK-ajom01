@@ -40,12 +40,12 @@ def checkout(skus):
     remaining_group_count = group_count % 3
 
     for item, price, quantity in grouped_items:
-        if discounted_group_count > 0:
-            discounted_group_count -= 1
-            continue
+        if discounted_group_count == 0:
+            break
+        take = min(quantity, remaining_group_count)
+        total += take * price
+        remaining_group_count -= take
         
-        total += price * quantity
-
 
 
 
@@ -100,7 +100,8 @@ def checkout(skus):
     
     return total
 
-print(checkout('ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ'))
-print(checkout('LGCKAQXFOSKZGIWHNRNDITVBUUEOZXPYAVFDEPTBMQLYJRSMJCWH'))
+# print(checkout('ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ'))
+# print(checkout('LGCKAQXFOSKZGIWHNRNDITVBUUEOZXPYAVFDEPTBMQLYJRSMJCWH'))
+print(checkout('STX'))
 
 
