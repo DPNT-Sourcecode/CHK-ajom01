@@ -11,11 +11,13 @@ def checkout(skus):
         if basket['E'] >= 2:
             basket['B'] -= basket['E'] // 2
             basket['B'] = max(0, basket['B'])
+    if 'F' in basket and basket['F'] >= 3:
+        basket['F'] -= basket['F'] // 3
 
     total = 0
     print(basket)
         #     Our price table and offers:
-        # +------+-------+------------------------+
+        #        +------+-------+------------------------+
         # | Item | Price | Special offers         |
         # +------+-------+------------------------+
         # | A    | 50    | 3A for 130, 5A for 200 |
@@ -23,6 +25,7 @@ def checkout(skus):
         # | C    | 20    |                        |
         # | D    | 15    |                        |
         # | E    | 40    | 2E get one B free      |
+        # | F    | 10    | 2F get one F free      |
         # +------+-------+------------------------+
     for item in basket:
         if item == 'A':
@@ -41,10 +44,12 @@ def checkout(skus):
             total += 15 * basket[item]
         elif item == 'E':
             total += 40 * basket[item]
+        elif item == 'F':
+            total += 10 * basket[item]
         else:
             return -1
     
     return total
 
-print(checkout("BBBEE")) 
+print(checkout("AABCDEFF"))  # 165
 
