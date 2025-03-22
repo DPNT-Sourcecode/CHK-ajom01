@@ -29,70 +29,63 @@ def checkout(skus):
 
     total = 0
     print(basket)
-    for item in basket:
-        if item == 'A':
-            total += 200 * (basket[item] // 5) + 130 * (basket[item] % 5 // 3) + 50 * (basket[item] % 5 % 3)
-        elif item == 'B':
-            total += 45 * (basket[item] // 2) + 30 * (basket[item] % 2)
-        elif item == 'C':
-            total += 20 * basket[item]
-        elif item == 'D':
-            total += 15 * basket[item]
-        elif item == 'E':
-            total += 40 * basket[item]
-        elif item == 'F':
-            total += 10 * basket[item]
-        elif item == 'G':
-            total += 20 * basket[item]
-        elif item == 'H':
-            total += 80 * (basket[item] // 10) + 45 * (basket[item] % 10 // 5) + 10 * (basket[item] % 5)
-        elif item == 'I':
-            total += 35 * basket[item]
-        elif item == 'J':
-            total += 60 * basket[item]
-        elif item == 'K':
-            total += 150 * (basket[item] // 2) + 80 * (basket[item] % 2)
-        elif item == 'L':
-            total += 90 * basket[item]
-        elif item == 'M':
-            total += 15 * basket[item]
-        elif item == 'N':
-            total += 40 * basket[item]
-        elif item == 'O':
-            total += 10 * basket[item]
-        elif item == 'P':
-            total += 200 * (basket[item] // 5) + 50 * (basket[item] % 5)
-        elif item == 'Q':
-            total += 80 * (basket[item] // 3) + 30 * (basket[item] % 3)
-        elif item == 'R':
-            total += 50 * basket[item]
-        elif item == 'S':
-            total += 30 * basket[item]
-        elif item == 'T':
-            total += 20 * basket[item]
-        elif item == 'U':
-            total += 40 * basket[item]
-        elif item == 'V':
-            if basket[item] >= 3:
-                total += 130 * (basket[item] // 3)
-                basket[item] = basket[item] % 3
-            if basket[item] >= 2:
-                total += 90 * (basket[item] // 2)
-                basket[item] = basket[item] % 2
-            total += 50 * basket[item]
-        elif item == 'W':
-            total += 20 * basket[item]
-        elif item == 'X':
-            total += 90 * basket[item]
-        elif item == 'Y':
-            total += 10
-        elif item == 'Z':
-            total += 50 * basket[item]
-        else:
-            return -1
+    for item, qty in basket.items():
+        match item:
+            case 'A':
+                total += 200 * (qty // 5) + 130 * (qty % 5 // 3) + 50 * (qty % 5 % 3)
+            case 'B':
+                total += 45 * (qty // 2) + 30 * (qty % 2)
+            case 'C':
+                total += 20 * qty
+            case 'D':
+                total += 15 * qty
+            case 'E':
+                total += 40 * qty
+            case 'F':
+                total += 10 * qty
+            case 'G':
+                total += 20 * qty
+            case 'H':
+                total += 80 * (qty // 10) + 45 * (qty % 10 // 5) + 10 * (qty % 5)
+            case 'I':
+                total += 35 * qty
+            case 'J':
+                total += 60 * qty
+            case 'K':
+                total += 150 * (qty // 2) + 80 * (qty % 2)
+            case 'L':
+                total += 90 * qty
+            case 'M':
+                total += 15 * qty
+            case 'N':
+                total += 40 * qty
+            case 'O':
+                total += 10 * qty
+            case 'P':
+                total += 200 * (qty // 5) + 50 * (qty % 5)
+            case 'Q':
+                total += 80 * (qty // 3) + 30 * (qty % 3)
+            case 'R':
+                total += 50 * qty
+            case 'S':
+                total += 30 * qty
+            case 'T':
+                total += 20 * qty
+            case 'U':
+                total += 40 * qty
+            case 'V':
+                total += 130 * (qty // 3) + 90 * (qty % 3 // 2) + 50 * (qty % 3 % 2)
+            case 'W':
+                total += 20 * qty
+            case 'X':
+                total += 90 * qty
+            case 'Y':
+                total += 10
+            case 'Z':
+                total += 50 * qty
+            case _:
+                return -1
     
     return total
-
-print(checkout("HHHHHHHHHHHHHHHH"))  # 120
 
 
