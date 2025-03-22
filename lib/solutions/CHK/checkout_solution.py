@@ -27,8 +27,12 @@ def checkout(skus):
     for item in basket:
         if item == 'A':
             if basket[item] >= 5:
-                
-            # total += 200 * (basket[item] // 5) + 130 * ((basket[item] % 5) // 3) + 50 * (basket[item] % 3)
+                total += 200 * (basket[item] // 5) 
+                basket[item] = basket[item] % 5
+            if basket[item] >= 3:
+                total += 130 * (basket[item] // 3)
+                basket[item] = basket[item] % 3
+            total += 50 * basket[item]
         elif item == 'B':
             total += 45 * (basket[item] // 2) + 30 * (basket[item] % 2)
         elif item == 'C':
@@ -36,11 +40,11 @@ def checkout(skus):
         elif item == 'D':
             total += 15 * basket[item]
         elif item == 'E':
-            total += 40 * (basket[item] // 2) 
+            total += 40 * basket[item]
         else:
             return -1
     
     return total
 
-print(checkout("AAAAABB"))
+print(checkout("BBBEE")) 
 
