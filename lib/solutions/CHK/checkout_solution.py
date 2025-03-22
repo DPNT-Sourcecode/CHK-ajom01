@@ -11,22 +11,19 @@ def checkout(skus):
         if basket['E'] >= 2:
             basket['B'] -= basket['E'] // 2
             basket['B'] = max(0, basket['B'])
+    
     if 'F' in basket and basket['F'] >= 3:
         basket['F'] -= basket['F'] // 3
+    
+    if 'U' in basket and basket['U'] >= 4:
+        basket['U'] -= basket['U'] // 4
+    
+    if 'R' in basket and basket['R'] >= 3:
+    
+    
 
     total = 0
     print(basket)
-        #     Our price table and offers:
-        #        +------+-------+------------------------+
-        # | Item | Price | Special offers         |
-        # +------+-------+------------------------+
-        # | A    | 50    | 3A for 130, 5A for 200 |
-        # | B    | 30    | 2B for 45              |
-        # | C    | 20    |                        |
-        # | D    | 15    |                        |
-        # | E    | 40    | 2E get one B free      |
-        # | F    | 10    | 2F get one F free      |
-        # +------+-------+------------------------+
     for item in basket:
         if item == 'A':
             if basket[item] >= 5:
@@ -78,11 +75,31 @@ def checkout(skus):
             pass
         elif item == 'S':
             total += 30 * basket[item]
-        
+        elif item == 'T':
+            total += 20 * basket[item]
+        elif item == 'U':
+            total += 40 * basket[item]
+        elif item == 'V':
+            if basket[item] >= 3:
+                total += 130 * (basket[item] // 3)
+                basket[item] = basket[item] % 3
+            if basket[item] >= 2:
+                total += 90 * (basket[item] // 2)
+                basket[item] = basket[item] % 2
+            total += 50 * basket[item]
+        elif item == 'W':
+            total += 20 * basket[item]
+        elif item == 'X':
+            total += 90 * basket[item]
+        elif item == 'Y':
+            total += 10
+        elif item == 'Z':
+            total += 50 * basket[item]
         else:
             return -1
     
     return total
 
 print(checkout("AABCDEFF"))  # 165
+
 
